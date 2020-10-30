@@ -1,11 +1,14 @@
 ﻿using Microsoft.VisualBasic.CompilerServices;
 using System;
 using System.Runtime.CompilerServices;
+using System.Collections.Generic;
+
 
 namespace ShwanLessonFive
 {
-    public class RunningClub : Club
+    public class RunningClub : Club<int>
     {
+
         public RunningClub(string name, bool societyActivities, string city) : base(name, societyActivities, city)
         {
         }
