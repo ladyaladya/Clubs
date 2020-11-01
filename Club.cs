@@ -34,8 +34,5 @@ namespace ShwanLessonFive
             Console.WriteLine("Number of participants: " + club.NumberOfParticipants);
             Console.WriteLine("Club get participation in events: " + club.SocietyActivities);
         }
-
-
-
     }
 }
