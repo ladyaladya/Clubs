@@ -21,8 +21,21 @@ namespace ShwanLessonFive
             //MergedRC1.PrintFields(MergedRC1);
             #endregion
 
+            Club club = new Club();
+            club.Notify += CheckSundayEvent;
+            club.PrintFields(club);
+
 
             Console.ReadLine();
+        }
+        private static void CheckSundayEvent()
+        {
+            bool isSunday = String.Equals(DateTime.Today.DayOfWeek.ToString(), "Sunday");
+            if (isSunday)
+            {
+                Console.WriteLine("Today our club organize an event at 8 am.");
+            }
+            else Console.WriteLine("The next event will be on Sunday.");
         }
     }
 }

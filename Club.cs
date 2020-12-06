@@ -8,6 +8,8 @@ namespace ShwanLessonFive
         public int NumberOfParticipants { get; set; }
         public bool SocietyActivities { get; set; }
         public string City { get; set; }
+        public delegate void EventHandler();
+        public event EventHandler Notify;
 
         public Club(string name, bool societyActivities)
         {
@@ -27,15 +29,14 @@ namespace ShwanLessonFive
             City = city;
         }
 
+
         public void PrintFields(Club club)
         {
+            Notify?.Invoke();
             Console.WriteLine("Club name: " + club.Name);
             Console.WriteLine("Club city: " + club.City);
             Console.WriteLine("Number of participants: " + club.NumberOfParticipants);
             Console.WriteLine("Club get participation in events: " + club.SocietyActivities);
         }
-
-
-
     }
 }
