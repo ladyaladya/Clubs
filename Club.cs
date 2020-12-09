@@ -4,11 +4,11 @@ namespace ShwanLessonFive
 {
     public class Club
     {
-        public string Name {get;set;}
-        public int NumberOfParticipants { get; set; }
-        public bool SocietyActivities { get; set; }
-        public string City { get; set; }
-        public delegate void EventHandler();
+        public string Name { get; set; } = "Club name isn't specified";
+        public int NumberOfParticipants { get; set; } = 0;
+        public bool SocietyActivities { get; set; } = false;
+        public string City { get; set; } = "Club city isn't specified";
+        public delegate void EventHandler(Club club);
         public event EventHandler Notify;
 
         public Club(string name, bool societyActivities)
@@ -29,14 +29,19 @@ namespace ShwanLessonFive
             City = city;
         }
 
-
-        public void PrintFields(Club club)
+        public void StartSocietyActivities(Club club)
         {
-            Notify?.Invoke();
-            Console.WriteLine("Club name: " + club.Name);
-            Console.WriteLine("Club city: " + club.City);
-            Console.WriteLine("Number of participants: " + club.NumberOfParticipants);
-            Console.WriteLine("Club get participation in events: " + club.SocietyActivities);
+            club.SocietyActivities = true;
+            Notify?.Invoke(club);
+        }
+
+
+        public void PrintFields()
+        {
+            Console.WriteLine("Club name: " + Name);
+            Console.WriteLine("Club city: " + City);
+            Console.WriteLine("Number of participants: " + NumberOfParticipants);
+            Console.WriteLine("Club get participation in events: " + SocietyActivities);
         }
     }
 }

@@ -22,20 +22,29 @@ namespace ShwanLessonFive
             #endregion
 
             Club club = new Club();
-            club.Notify += CheckSundayEvent;
-            club.PrintFields(club);
+            club.Notify += StartSocietyActivitiesEvent;
+            club.StartSocietyActivities(club);
+            club.PrintFields();
 
 
             Console.ReadLine();
         }
-        private static void CheckSundayEvent()
+
+        private static void StartSocietyActivitiesEvent(Club club)
         {
-            bool isSunday = String.Equals(DateTime.Today.DayOfWeek.ToString(), "Sunday");
-            if (isSunday)
-            {
-                Console.WriteLine("Today our club organize an event at 8 am.");
-            }
-            else Console.WriteLine("The next event will be on Sunday.");
+            Console.WriteLine($"The club {club.Name} started it's society activities! \nCongratulations!!!");
         }
+
+
+
+        //private static void CheckSundayEvent()
+        //{
+        //    bool isSunday = String.Equals(DateTime.Today.DayOfWeek.ToString(), "Sunday");
+        //    if (isSunday)
+        //    {
+        //        Console.WriteLine("Today our club organize an event at 8 am.");
+        //    }
+        //    else Console.WriteLine("The next event will be on Sunday.");
+        //}
     }
 }
