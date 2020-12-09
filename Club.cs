@@ -8,18 +8,17 @@ namespace ShwanLessonFive
         public int NumberOfParticipants { get; set; } = 0;
         public bool SocietyActivities { get; set; } = false;
         public string City { get; set; } = "Club city isn't specified";
-        public delegate void EventHandler(Club club);
-        public event EventHandler Notify;
+        public delegate void CRUDClubHandler(Club club);
+        public event CRUDClubHandler StartActivitiesNotify;
+        public event CRUDClubHandler SaveClubInfoNotify;
+        public Club()
+        {
 
+        }
         public Club(string name, bool societyActivities)
         {
             Name = name;
             SocietyActivities = societyActivities;
-        }
-
-        public Club()
-        {
-            
         }
 
         public Club(string name, bool societyActivities, string city)
@@ -32,9 +31,13 @@ namespace ShwanLessonFive
         public void StartSocietyActivities(Club club)
         {
             club.SocietyActivities = true;
-            Notify?.Invoke(club);
+            StartActivitiesNotify?.Invoke(club);
         }
 
+        public void SaveClubInfo(Club club)
+        {
+            SaveClubInfoNotify?.Invoke(club);
+        }
 
         public void PrintFields()
         {

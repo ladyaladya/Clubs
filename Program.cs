@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Text;
 
 namespace ShwanLessonFive
 {
@@ -21,13 +23,42 @@ namespace ShwanLessonFive
             //MergedRC1.PrintFields(MergedRC1);
             #endregion
 
-            Club club = new Club();
-            club.Notify += StartSocietyActivitiesEvent;
-            club.StartSocietyActivities(club);
-            club.PrintFields();
+            Club club = new Club("NoBorringRunners", true, "Vinnytsia");
+            club.SaveClubInfoNotify += Club_SaveClubInfoNotify;
+            club.SaveClubInfo(club);
 
 
             Console.ReadLine();
+        }
+
+        private static void Club_SaveClubInfoNotify(Club club)
+        {
+            string path = "C:\\Users\\Admin\\Desktop";
+            try
+            {
+                if (Directory.Exists(path))
+                {
+                    if (!Directory.Exists(path + "\\ClubsInfo"))
+                    {
+                        {
+                            Directory.CreateDirectory(path + "\\ClubsInfo");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex) {
+                Console.WriteLine(ex.Message);
+            }
+
+            using (var sw = new StreamWriter(path + $"\\ClubsInfo\\{club.Name}.txt", false, Encoding.UTF8))
+            {
+                sw.WriteLine($"Club name: {club.Name}");
+                sw.WriteLine($"Club city: {club.City}");
+                sw.WriteLine($"Number of participants: {club.NumberOfParticipants}");
+                sw.WriteLine($"Club get participation in events: {club.SocietyActivities}");
+            }
+            Console.WriteLine($"Information about \"{club.Name}\" was successfully saved \nto \"" + path 
+                + $"\\ClubsInfo\\{club.Name}.txt\"");
         }
 
         private static void StartSocietyActivitiesEvent(Club club)
